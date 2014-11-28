@@ -1,0 +1,35 @@
+Name : Alex Howard
+Nation: Australia
+
+
+skype: aerissupport
+emain address: alex@aerissolutions.com.au
+
+
+structure:
+<!-- events go here, example structure below -->
+   <!-- 
+    <div class="row">
+      <div class="evtCont container">
+        <div class="eventLineOne">ABC Conference</div>
+        <div class="eventLineTwo">Annual General Meeting</div>
+        <div class="eventTime">10:30-14:30</div>
+        <div class="eventRoom">Grand Ballroom</div>
+        <div class="eventArrow"><img src="arrow.gif" class="arrow"></div>
+        <div class="eventTxt">Level 6</div>
+        <div class="eventLogo"><img src="eventLogo.png" class="eventLogoImg"></div>
+      </div>
+    </div>
+  
+    <div class="rowAlt">
+      <div class="evtCont container">
+        <div class="eventLineOne">ABC Conference</div>
+        <div class="eventLineTwo">Annual General Meeting</div>
+        <div class="eventTime">10:30-14:30</div>
+        <div class="eventRoom">Grand Ballroom</div>
+        <div class="eventArrow"><img src="arrow.gif" class="arrow"></div>
+        <div class="eventTxt">Level 6</div>
+        <div class="eventLogo"><img src="eventLogo.png" class="eventLogoImg"></div>
+      </div>
+    </div>
+!-->

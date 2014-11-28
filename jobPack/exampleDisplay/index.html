@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Concierge Event Display</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="source.js"></script>
+    <script src="jquery-2.1.1.min.js"></script>
+
+    <script type="text/javascript">
+      var epp = 6;
+      var tpp = 7;
+      var toe = false;
+      var evd = "evtCont";
+
+//////////////////They will be null////////////////////
+      var etf = "hh:mm:ss";
+      var fade= false;
+      var fadeTime=0;
+      var iet= true;
+      var ietS="-";
+      var turl= "http://127.0.0.1:5555/zone=myzone";
+
+////////////////// End ///////////////////////////////
+      var events = [
+    {
+        "id": "177",
+        "title1": "Test gg",
+        "title2": "",
+        "description1": "test gg",
+        "description2": "",
+        "roomName": "",
+        "logoFullScreen": "0",
+        "logoHide": "0",
+        "alternateDirections": "0",
+        "eventStart": "2014-11-24 13:10:00",
+        "eventEnd": "2014-11-24 14:10:00",
+        "roomEventStart": "2014-11-24 12:55:00",
+        "roomEventEnd": "2014-11-24 14:15:00",
+        "foyerEventStart": "2014-11-24 11:40:00",
+        "foyerEventEnd": "2014-11-24 14:15:00",
+        "hide": "0",
+        "roomNames": "Charlie",
+        "roomIds": "74",
+        "arrow": "11",
+        "arrowAlt": "9",
+        "text": "hello",
+        "textAlt": "world",
+        "arrowName": "up-elevator",
+        "arrowNameAlt": "up-stairs"
+    },
+    {
+        "id": "178",
+        "title1": "Test gg",
+        "title2": "",
+        "description1": "test gg",
+        "description2": "",
+        "roomName": "",
+        "logoFullScreen": "0",
+        "logoHide": "0",
+        "alternateDirections": "0",
+        "eventStart": "2014-11-24 13:10:00",
+        "eventEnd": "2014-11-24 14:10:00",
+        "roomEventStart": "2014-11-24 12:55:00",
+        "roomEventEnd": "2014-11-24 14:15:00",
+        "foyerEventStart": "2014-11-24 11:40:00",
+        "foyerEventEnd": "2014-11-24 14:15:00",
+        "hide": "0",
+        "roomNames": "Charlie",
+        "roomIds": "74",
+        "arrow": "11",
+        "arrowAlt": "9",
+        "text": "hello",
+        "textAlt": "world",
+        "arrowName": "up-elevator",
+        "arrowNameAlt": "up-stairs"
+    },
+    {
+        "id": "174",
+        "title1": "test",
+        "title2": "test",
+        "description1": "test",
+        "description2": "test",
+        "roomName": "",
+        "logoFullScreen": "0",
+        "logoHide": "0",
+        "alternateDirections": "0",
+        "eventStart": "2014-11-25 10:25:00",
+        "eventEnd": "2014-11-25 22:25:00",
+        "roomEventStart": "2014-11-25 10:10:00",
+        "roomEventEnd": "2014-11-25 22:30:00",
+        "foyerEventStart": "2014-11-25 08:55:00",
+        "foyerEventEnd": "2014-11-25 22:30:00",
+        "hide": "0",
+        "roomNames": "Alpha",
+        "roomIds": "72",
+        "arrow": "2",
+        "arrowAlt": "5",
+        "text": "",
+        "textAlt": "",
+        "arrowName": "down",
+        "arrowNameAlt": "up-left"
+    },
+    {
+        "id": "175",
+        "title1": "test",
+        "title2": "test",
+        "description1": "test",
+        "description2": "test",
+        "roomName": "",
+        "logoFullScreen": "0",
+        "logoHide": "0",
+        "alternateDirections": "0",
+        "eventStart": "2014-11-25 10:25:00",
+        "eventEnd": "2014-11-25 22:25:00",
+        "roomEventStart": "2014-11-25 10:10:00",
+        "roomEventEnd": "2014-11-25 22:30:00",
+        "foyerEventStart": "2014-11-25 08:55:00",
+        "foyerEventEnd": "2014-11-25 22:30:00",
+        "hide": "0",
+        "roomNames": "Alpha",
+        "roomIds": "72",
+        "arrow": "2",
+        "arrowAlt": "5",
+        "text": "",
+        "textAlt": "",
+        "arrowName": "down",
+        "arrowNameAlt": "up-left"
+    },
+    {
+        "id": "176",
+        "title1": "test",
+        "title2": "test",
+        "description1": "test",
+        "description2": "test",
+        "roomName": "",
+        "logoFullScreen": "0",
+        "logoHide": "0",
+        "alternateDirections": "0",
+        "eventStart": "2014-11-25 10:28:00",
+        "eventEnd": "2014-11-25 10:28:00",
+        "roomEventStart": "2014-11-25 10:13:00",
+        "roomEventEnd": "2014-11-25 10:33:00",
+        "foyerEventStart": "2014-11-25 08:58:00",
+        "foyerEventEnd": "2014-11-25 10:33:00",
+        "hide": "0",
+        "roomNames": "Bravo",
+        "roomIds": "73",
+        "arrow": "4",
+        "arrowAlt": "5",
+        "text": "",
+        "textAlt": "",
+        "arrowName": "right",
+        "arrowNameAlt": "up-left"
+    },
+    {
+        "id": "179",
+        "title1": "test cc",
+        "title2": "",
+        "description1": "test cc",
+        "description2": "",
+        "roomName": "blah",
+        "logoFullScreen": "0",
+        "logoHide": "0",
+        "alternateDirections": "0",
+        "eventStart": "2014-11-25 13:10:00",
+        "eventEnd": "2014-11-25 22:10:00",
+        "roomEventStart": "2014-11-25 12:55:00",
+        "roomEventEnd": "2014-11-25 22:15:00",
+        "foyerEventStart": "2014-11-25 11:40:00",
+        "foyerEventEnd": "2014-11-25 22:15:00",
+        "hide": "0",
+        "roomNames": "Bravo,Charlie",
+        "roomIds": "73,74",
+        "arrow": "4",
+        "arrowAlt": "5",
+        "text": "",
+        "textAlt": "",
+        "arrowName": "right",
+        "arrowNameAlt": "up-left"
+    },
+    {
+        "id": "180",
+        "title1": "test vv",
+        "title2": "",
+        "description1": "test vv",
+        "description2": "",
+        "roomName": "",
+        "logoFullScreen": "0",
+        "logoHide": "0",
+        "alternateDirections": "0",
+        "eventStart": "2014-11-25 13:36:00",
+        "eventEnd": "2014-11-25 22:36:00",
+        "roomEventStart": "2014-11-25 13:21:00",
+        "roomEventEnd": "2014-11-25 22:41:00",
+        "foyerEventStart": "2014-11-25 12:06:00",
+        "foyerEventEnd": "2014-11-25 22:41:00",
+        "hide": "0",
+        "roomNames": "Bravo",
+        "roomIds": "73",
+        "arrow": "4",
+        "arrowAlt": "5",
+        "text": "",
+        "textAlt": "",
+        "arrowName": "right",
+        "arrowNameAlt": "up-left"
+    }
+];
+    </script>
+
+<!--    
+!-->
+  </head>
+
+  <body>
+    <div id="acHeader">
+      <img id="acHeaderLogo" src="bg_logo.jpg">
+    </div>
+
+    <!--  This is start of event part !-->
+
+    <script type="text/javascript">
+        show(epp,tpp,toe,turl,evd,fade,fadeTime,iet,ietS,etf,events);
+    </script>
+
+    <!--  This is end of event part !-->
+    <div id="acFooter">
+    </div>
+  </body>
+</html>

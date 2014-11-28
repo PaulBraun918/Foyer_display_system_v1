@@ -1,0 +1,139 @@
+body
+{
+	position: absolute;
+	width:1080px;
+	height:1920px;
+	margin: 0px;
+}
+
+#acHeader
+{
+	top: 0px;
+	width: 1080px;
+	height: 150px;
+	text-align: center;
+	background-color: white;
+}
+
+#acFooter
+{
+	position: absolute;
+	width: 1080px;
+	height: 150px;
+	text-align: center;
+	background-color: white;
+	bottom: 0px;
+}
+
+#acHeaderLogo
+{
+	width: 280px;
+	position: absolute;
+	left: 400px;
+	top: 40px;
+}
+
+
+.row 
+{
+	margin: 0px;
+	width: 1080px;
+	height: 270px;
+}
+
+.container
+{
+	position: relative;
+	background-color: #0191C7;
+	width: 100%;
+	height: 270px;
+}
+
+.containerAlt
+{
+	position: relative;
+	background-color: #F55B36;	
+	width: 100%;
+	height: 270px;
+}
+
+.eventLineOne
+{
+	position: absolute;
+	margin: 0px;
+	top: 10px;
+	left: 20px;
+	font-size: 35px;
+}
+
+.eventLineTwo
+{
+	position: absolute;
+	margin: 0px;
+	top: 45px;
+	left: 20px;
+	font-size: 35px;
+}
+
+.eventTime
+{
+	position: absolute;
+	text-align: right;
+	top: 80px;
+	left: 20px;
+	font-size: 30px;
+}
+
+.eventLogo div
+{
+	position: absolute;
+	width: 150px;
+	height: 150px;
+	right: 250px;
+	top: 10px;
+	background-size: 150px,150px;
+	background-repeat: no-repeat;
+}
+.eventLogoImg.ps0 {
+	top:0;
+	right:0;
+}
+
+.eventLogoImg
+{
+	height: 150px;
+	width: 150px;
+}
+
+.eventArrow
+{
+	height: 150px;
+	width: 150px;
+}
+.arrow div
+{
+	position: absolute;
+	right: 20px;
+	top: 10px;
+	height: 150px;
+	width: 150px;
+	background-size: 150px,150px;
+	background-repeat: no-repeat;
+}
+
+
+.eventRoom
+{
+	position: absolute;
+	left: 20px;
+	top: 120px;
+	font-size: 30px;
+}
+
+.eventText
+{
+	position: absolute;
+	right: 20px;
+	font-size: 30px;
+	top: 180px;
+}
