@@ -3,7 +3,7 @@ var page_id=0;
 function getcurrenttime()
 {
 	var d = new Date();
-	var year=d.getYear()+1900;
+	var year=d.getFullYear();
 	var month=d.getMonth();
 	var date=d.getDate();
 	var hour=d.getHours();
@@ -64,7 +64,7 @@ function show_page(epp,tpp,toe,turl,evd,fade,fadeTime,iet,ietS,etf,events,page_i
 
 	var text;
 
-	for(i=page_id*events_per_page;i<page_id*events_per_page+min(events_per_page,events_count-page_id*events_per_page);i++)
+	for(i=page_id*events_per_page;i<page_id*events_per_page+Math.min(events_per_page,events_count-page_id*events_per_page);i++)
 	{
 
 		var eventLineOne=document.createElement("div");
@@ -229,11 +229,6 @@ function show(epp,tpp,toe,turl,evd,fade,fadeTime,iet,ietS,etf,events)
 
 	},1000*tpp);
 	
-}
-
-function min(var1,var2)
-{
-	return (var1>=var2)? var2:var1;
 }
 
 function float2int (value) {

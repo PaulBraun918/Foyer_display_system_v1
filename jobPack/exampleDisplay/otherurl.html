@@ -1,16 +1,21 @@
 <html>
 <head>
 	<script type="text/javascript">
-	function calc() 
+	function show() 
 	{
-		var ele=document.getElementById("bnt");
-		ele.value=Date();
+		var content=document.getElementById("num1").value;
+		show_all(content);
+		var text="gogogo";
+		show_all(content,text);
+	}
+	function show_all(content,title="GOOD")
+	{
+		alert(title+" "+content);
 	}
 	</script>
 </head>
 <body>
 	<input type="text" id="num1">
-	<input type="text" id="num2">
-	<button onclick="calc()" id="btn">SOS</button>
+	<button onclick="show()" id="btn">SOS</button>
 </body>
 </html>
