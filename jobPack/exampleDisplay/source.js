@@ -29,9 +29,19 @@ function compare_time(current_time,start_time)
 	return is_show;
 }
 
-function calc_showable_event_count()
+function calc_showable_event_count(events)
 {
-
+	showable_event_index.length=0;
+	
+	var len=(events.length);
+	var cur_time=getcurrenttime();
+	for(var k = 0; k < len; k++)
+	{
+		if (compare_time(cur_time,events[i]["eventStart"])) 
+		{
+			showable_event_index.push(k);
+		};
+	}
 }
 
 function event_time_hour_min_sec(str)
