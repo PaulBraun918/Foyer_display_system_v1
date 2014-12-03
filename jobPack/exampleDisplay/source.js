@@ -3,16 +3,31 @@ var showable_event_index=[];
 
 function getcurrenttime()
 {
-	var d = new Date();
-	var year=d.getFullYear();
-	var month=d.getMonth();
-	var date=d.getDate();
-	var hour=d.getHours();
-	var minute=d.getMinutes();
-	var sec= d.getSeconds();
-	var current_time=year+"-"+month+"-"+date+" "+ hour+":"+minute+":"+sec;
-	
-	return current_time;
+	var now     = new Date(); 
+    var year    = now.getFullYear();
+    var month   = now.getMonth()+1; 
+    var day     = now.getDate();
+    var hour    = now.getHours();
+    var minute  = now.getMinutes();
+    var second  = now.getSeconds(); 
+    if(month.toString().length == 1) {
+        var month = '0'+month;
+    }
+    if(day.toString().length == 1) {
+        var day = '0'+day;
+    }   
+    if(hour.toString().length == 1) {
+        var hour = '0'+hour;
+    }
+    if(minute.toString().length == 1) {
+        var minute = '0'+minute;
+    }
+    if(second.toString().length == 1) {
+        var second = '0'+second;
+    }   
+    var dateTime = year+'-'+month+'-'+day+' '+hour+':'+minute+':'+second;   
+    
+    return dateTime;
 
 }
 
@@ -29,15 +44,16 @@ function compare_time(current_time,start_time)
 	return is_show;
 }
 
+
 function calc_showable_event_count(events)
 {
 	showable_event_index.length=0;
-	
+
 	var len=(events.length);
 	var cur_time=getcurrenttime();
 	for(var k = 0; k < len; k++)
 	{
-		if (compare_time(cur_time,events[i]["eventStart"])) 
+		if ((compare_time(cur_time,events[k]["foyerEventStart"])) && !(compare_time(cur_time,events[k]["foyerEventEnd"])))
 		{
 			showable_event_index.push(k);
 		};
@@ -66,7 +82,6 @@ function return_event_start_and_end_time(events,etf,ietS)
 
 function show_page(epp,tpp,toe,turl,evd,fade,fadeTime,iet,ietS,etf,events,page_id)
 {
-	getcurrenttime();
 
 	var events_per_page=epp;
 	var time_for_page=tpp;
@@ -193,11 +208,8 @@ function show_page(epp,tpp,toe,turl,evd,fade,fadeTime,iet,ietS,etf,events,page_i
 		if(evd =="evtCont")
 		{
 			var row=document.createElement("div");
-			row.setAttribute("class", "row"+"-"+page_id);
-			if(fade==true)
-			{
-				row.setAttribute("style","display:none;");	
-			}
+			row.setAttribute("class", "row"+"-"+page_id +" disabled");
+			row.setAttribute("style","display:none;");	
 			row.appendChild(container);
 
 			document.body.appendChild(row);
@@ -205,43 +217,55 @@ function show_page(epp,tpp,toe,turl,evd,fade,fadeTime,iet,ietS,etf,events,page_i
 		else
 		{
 			var rowAlt=document.createElement("div");
-			rowAlt.setAttribute("class", "rowAlt"+"-"+page_id);
-			if(fade==true)
-			{
-				rowAlt.setAttribute("style","display:none;");
-			}
+			rowAlt.setAttribute("class", "rowAlt"+"-"+page_id + " disabled");
+			rowAlt.setAttribute("style","display:none;");
 			rowAlt.appendChild(container);
 
 			document.body.appendChild(rowAlt);
 
 		}
 	}
-	if(fade == true)
-	{
-		if(evd == "evtCont")
-		{
-			var class_name=".row"+"-"+page_id;
-			$(class_name).fadeIn(1000*fadeTime);		
-		}
-		else
-		{
-			var class_name=".rowAlt"+"-"+page_id;
-			$(class_name).fadeIn(1000*fadeTime);
-		}
-	}
-	
+	show_event_divs(epp,evd,events,fade,fadeTime);
+
 	setTimeout(function(){hide_page(page_id,evd);},1000*(tpp+fadeTime));
 }
 
-function show(epp,tpp,toe,turl,evd,fade,fadeTime,iet,ietS,etf,events)
+function show(epp,tpp,toe,evd,events,turl,fade,fadeTime,iet,ietS,etf)
 {
+	
+	if(etf == undefined)
+	{
+		etf = "hh:mm:ss";
+	}
+	if(fade == undefined)
+	{
+		fade = true;
+	}
+	if(fadeTime == undefined)
+	{
+		fadeTime = 4;
+	}
+	if(iet == undefined)
+	{
+		iet = false;
+	}
+	if(ietS == undefined)
+	{
+		ietS = " ";
+	}
+	if(turl == undefined)
+	{
+		turl = "http://127.0.0.1:5555/zone=myzone";
+	}
+
 	var events_per_page=epp;
-	var events_count=(events.length);
+	var events_count=events.length;
 	var page_count=float2int(events_count/(events_per_page))+1;
 	show_page(epp,tpp,toe,turl,evd,fade,fadeTime,iet,ietS,etf,events,page_id);
 
 	page_id++;
 	var timer_id=setInterval(function(){show_page(epp,tpp,toe,turl,evd,fade,fadeTime,iet,ietS,etf,events,page_id);
+
 		if(page_id<page_count-1)
 		{
 			page_id++;	
@@ -260,7 +284,6 @@ function show(epp,tpp,toe,turl,evd,fade,fadeTime,iet,ietS,etf,events)
 		}
 
 	},1000*(tpp+fadeTime));
-	
 }
 
 function float2int (value) {
@@ -279,5 +302,50 @@ function hide_page(page_id,evd)
 	{
 		var className=".rowAlt-"+page_id;
 		$(className).remove();
+	}
+}
+
+function sort_events(events)
+{
+	events.sort(function(a,b){return compare_time(a["foyerEventStart"],b["foyerEventStart"])});
+}
+
+function show_event_divs(epp,evd,events,fade,fadeTime)
+{
+
+	calc_showable_event_count(events);
+
+	for( var index = 0 ; index < showable_event_index.length; index++)
+	{
+		var page_num = float2int(showable_event_index[index] / epp);
+		var div_index = showable_event_index[index] % epp;
+		
+		if(evd == "evtCont")
+		{
+			var class_n=".row-"+page_num;
+			$($(class_n)[div_index]).removeClass("disabled");
+			$($(class_n)[div_index]).addClass("enabled");
+		}
+		else
+		{
+			var class_n=".rowAlt-"+page_num;
+			alert(class_n);
+			$(class_n)[div_index].removeClass("disabled");
+			$(class_n)[div_index].addClass("enabled");
+		}
+	}
+
+	if(fade == true)
+	{
+		if(evd == "evtCont")
+		{
+			var class_name=".row"+"-"+page_id;
+			$(class_name).fadeIn(1000*fadeTime);
+		}
+		else
+		{
+			var class_name=".rowAlt"+"-"+page_id;
+			$(class_name).fadeIn(1000*fadeTime);
+		}
 	}
 }

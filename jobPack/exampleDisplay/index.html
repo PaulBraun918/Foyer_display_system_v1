@@ -13,13 +13,14 @@
       var evd = "evtCont";
 
 //////////////////They will be null////////////////////
+/*
       var etf = "hh:mm:ss";
       var fade= true;
       var fadeTime=4;
       var iet= true;
       var ietS="-";
       var turl= "http://127.0.0.1:5555/zone=myzone";
-
+*/
 ////////////////// End ///////////////////////////////
       var events = [
     {
@@ -32,12 +33,12 @@
         "logoFullScreen": "0",
         "logoHide": "0",
         "alternateDirections": "0",
-        "eventStart": "2014-11-24 13:10:00",
+        "eventStart": "2014-11-24 11:10:00",
         "eventEnd": "2014-11-24 14:10:00",
         "roomEventStart": "2014-11-24 12:55:00",
         "roomEventEnd": "2014-11-24 14:15:00",
         "foyerEventStart": "2014-11-24 11:40:00",
-        "foyerEventEnd": "2014-11-24 14:15:00",
+        "foyerEventEnd": "2014-12-24 14:15:00",
         "hide": "0",
         "roomNames": "Charlie",
         "roomIds": "74",
@@ -58,7 +59,7 @@
         "logoFullScreen": "0",
         "logoHide": "0",
         "alternateDirections": "0",
-        "eventStart": "2014-11-24 13:10:00",
+        "eventStart": "2014-11-24 10:10:00",
         "eventEnd": "2014-11-24 14:10:00",
         "roomEventStart": "2014-11-24 12:55:00",
         "roomEventEnd": "2014-11-24 14:15:00",
@@ -219,9 +220,18 @@
     <!--  This is start of event part !-->
 
     <script type="text/javascript">
-        show(epp,tpp,toe,turl,evd,fade,fadeTime,iet,ietS,etf,events);
+    
+        sort_events(events);
+        show(epp,tpp,toe,evd,events);
+        // if all variables are set , use this statement//
+
+        //show(epp,tpp,toe,evd,events,turl,fade,fadeTime,iet,ietS,etf);
+
+        //////////////////////////////////////////////////
     </script>
+
     <!--  This is end of event part !-->
+    
     <div id="acFooter">
     </div>
   </body>

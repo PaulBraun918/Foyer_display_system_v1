@@ -41,10 +41,18 @@ body
 	height: 270px;
 }
 
+.disabled
+{
+	background-color: #CFD8E7;
+}
+
+.enabled
+{
+	background-color: #0191C7;
+}
 .container
 {
 	position: relative;
-	background-color: #0191C7;
 	width: 100%;
 	height: 270px;
 }
