@@ -1,5 +1,6 @@
 var page_id=0;
 var showable_event_index=[];
+var disable_event_index=[];
 
 function getcurrenttime()
 {
@@ -329,11 +330,50 @@ function show_event_divs(epp,evd,events,fade,fadeTime)
 		else
 		{
 			var class_n=".rowAlt-"+page_num;
-			alert(class_n);
 			$(class_n)[div_index].removeClass("disabled");
 			$(class_n)[div_index].addClass("enabled");
 		}
 	}
+
+	var insert_index;
+	for(var l = 0 ; l < events.length; l ++)
+	{
+		insert_index = true;
+		for( var m = 0 ; m < showable_event_index.length; m++)
+		{
+			if( l == showable_event_index[m])
+			{
+				insert_index = false;
+				break;
+			}
+		}
+
+		if(insert_index == true)
+		{
+			disable_event_index.push(l);
+		}
+	}
+
+
+	for( var index = 0 ; index < disable_event_index.length; index++)
+	{
+		var page_num = float2int(disable_event_index[index] / epp);
+		var div_index = disable_event_index[index] % epp;
+		
+		if(evd == "evtCont")
+		{
+			var class_n=".row-"+page_num;
+			$($(class_n)[div_index]).removeClass("enabled");
+			$($(class_n)[div_index]).addClass("disabled");
+		}
+		else
+		{
+			var class_n=".rowAlt-"+page_num;
+			$(class_n)[div_index].removeClass("enabled");
+			$(class_n)[div_index].addClass("disabled");
+		}
+	}
+
 
 	if(fade == true)
 	{
