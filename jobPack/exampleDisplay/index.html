@@ -3,24 +3,28 @@
   <head>
     <title>Concierge Event Display</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="source.js"></script>
-    <script src="jquery-2.1.1.min.js"></script>
+
+    <script src="js/source.js"></script>
+    <script src="js/quickpager.jquery.js"></script>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
     <script type="text/javascript">
+
       var epp = 6;
       var tpp = 7;
       var toe = false;
       var evd = "evtCont";
 
 //////////////////They will be null////////////////////
-/*
+
       var etf = "hh:mm:ss";
       var fade= true;
       var fadeTime=4;
       var iet= true;
       var ietS="-";
       var turl= "http://127.0.0.1:5555/zone=myzone";
-*/
+
 ////////////////// End ///////////////////////////////
       var events = [
     {
@@ -38,7 +42,7 @@
         "roomEventStart": "2014-11-24 12:55:00",
         "roomEventEnd": "2014-11-24 14:15:00",
         "foyerEventStart": "2014-11-24 11:40:00",
-        "foyerEventEnd": "2014-12-24 14:15:00",
+        "foyerEventEnd": "2014-12-04 08:32:00",
         "hide": "0",
         "roomNames": "Charlie",
         "roomIds": "74",
@@ -64,7 +68,7 @@
         "roomEventStart": "2014-11-24 12:55:00",
         "roomEventEnd": "2014-11-24 14:15:00",
         "foyerEventStart": "2014-11-24 11:40:00",
-        "foyerEventEnd": "2014-11-24 14:15:00",
+        "foyerEventEnd": "2014-12-04 08:32:00",
         "hide": "0",
         "roomNames": "Charlie",
         "roomIds": "74",
@@ -89,8 +93,8 @@
         "eventEnd": "2014-11-25 22:25:00",
         "roomEventStart": "2014-11-25 10:10:00",
         "roomEventEnd": "2014-11-25 22:30:00",
-        "foyerEventStart": "2014-11-25 08:55:00",
-        "foyerEventEnd": "2014-11-25 22:30:00",
+        "foyerEventStart": "2014-12-04 05:16:00",
+        "foyerEventEnd": "2015-12-04 04:23:00",
         "hide": "0",
         "roomNames": "Alpha",
         "roomIds": "72",
@@ -115,8 +119,8 @@
         "eventEnd": "2014-11-25 22:25:00",
         "roomEventStart": "2014-11-25 10:10:00",
         "roomEventEnd": "2014-11-25 22:30:00",
-        "foyerEventStart": "2014-11-25 08:55:00",
-        "foyerEventEnd": "2014-11-25 22:30:00",
+        "foyerEventStart": "2014-12-04 04:40:00",
+        "foyerEventEnd": "2014-12-04 08:32:00",
         "hide": "0",
         "roomNames": "Alpha",
         "roomIds": "72",
@@ -141,8 +145,8 @@
         "eventEnd": "2014-11-25 10:28:00",
         "roomEventStart": "2014-11-25 10:13:00",
         "roomEventEnd": "2014-11-25 10:33:00",
-        "foyerEventStart": "2014-11-25 08:58:00",
-        "foyerEventEnd": "2014-11-25 10:33:00",
+        "foyerEventStart": "2014-12-04 04:49:00",
+        "foyerEventEnd": "2014-12-25 10:33:00",
         "hide": "0",
         "roomNames": "Bravo",
         "roomIds": "73",
@@ -167,8 +171,8 @@
         "eventEnd": "2014-11-25 22:10:00",
         "roomEventStart": "2014-11-25 12:55:00",
         "roomEventEnd": "2014-11-25 22:15:00",
-        "foyerEventStart": "2014-11-25 11:40:00",
-        "foyerEventEnd": "2014-11-25 22:15:00",
+        "foyerEventStart": "2014-12-04 05:12:00",
+        "foyerEventEnd": "2014-12-25 22:15:00",
         "hide": "0",
         "roomNames": "Bravo,Charlie",
         "roomIds": "73,74",
@@ -193,8 +197,8 @@
         "eventEnd": "2014-11-25 22:36:00",
         "roomEventStart": "2014-11-25 13:21:00",
         "roomEventEnd": "2014-11-25 22:41:00",
-        "foyerEventStart": "2014-11-25 12:06:00",
-        "foyerEventEnd": "2014-11-25 22:41:00",
+        "foyerEventStart": "2014-12-04 04:54:00",
+        "foyerEventEnd": "2015-12-25 22:41:00",
         "hide": "0",
         "roomNames": "Bravo",
         "roomIds": "73",
@@ -216,20 +220,14 @@
     <div id="acHeader">
       <img id="acHeaderLogo" src="bg_logo.jpg">
     </div>
-
     <!--  This is start of event part !-->
-
     <script type="text/javascript">
     
         sort_events(events);
-        show(epp,tpp,toe,evd,events);
-        // if all variables are set , use this statement//
 
-        //show(epp,tpp,toe,evd,events,turl,fade,fadeTime,iet,ietS,etf);
-
+        show(epp,tpp,toe,evd,events,turl,fade,fadeTime,iet,ietS,etf);
         //////////////////////////////////////////////////
     </script>
-
     <!--  This is end of event part !-->
     
     <div id="acFooter">
