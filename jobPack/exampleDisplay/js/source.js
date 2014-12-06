@@ -198,21 +198,20 @@ function show_page(epp,tpp,toe,turl,evd,fade,fadeTime,iet,ietS,etf,events,page_i
 			
 		}
 
-
-		var container=document.createElement("div");
-		container.setAttribute("class","evtCont container");
-		container.appendChild(eventLineOne);
-		container.appendChild(eventLineTwo);
-		container.appendChild(eventTime);
-		container.appendChild(eventRoom);
-		container.appendChild(eventArrow);
-		container.appendChild(eventText);
-		container.appendChild(eventLogo);
-
-		if(evd =="evtCont")
+		if( (i%2) == 0)
 		{
+			var container=document.createElement("div");
+			container.setAttribute("class","evtCont container");
+			container.appendChild(eventLineOne);
+			container.appendChild(eventLineTwo);
+			container.appendChild(eventTime);
+			container.appendChild(eventRoom);
+			container.appendChild(eventArrow);
+			container.appendChild(eventText);
+			container.appendChild(eventLogo);
+
 			var row=document.createElement("div");
-			row.setAttribute("class", "row"+"-"+page_id+" created");
+			row.setAttribute("class", "row created");
 			row.setAttribute("style","display:none;");
 			row.appendChild(container);
 
@@ -220,17 +219,27 @@ function show_page(epp,tpp,toe,turl,evd,fade,fadeTime,iet,ietS,etf,events,page_i
 		}
 		else
 		{
+
+			var container=document.createElement("div");
+			container.setAttribute("class","evtCont containerAlt");
+			container.appendChild(eventLineOne);
+			container.appendChild(eventLineTwo);
+			container.appendChild(eventTime);
+			container.appendChild(eventRoom);
+			container.appendChild(eventArrow);
+			container.appendChild(eventText);
+			container.appendChild(eventLogo);
+
 			var rowAlt=document.createElement("div");
-			rowAlt.setAttribute("class", "rowAlt"+"-"+page_id+" created");
+			rowAlt.setAttribute("class", "rowAlt created");
 			rowAlt.setAttribute("style","display:none;");
 			rowAlt.appendChild(container);
 
 			document.body.appendChild(rowAlt);
-
 		}
 	}
 
-	var class_n=".rowAlt-"+page_id;
+	var class_n=".created";
 	$(class_n).children().children().css("display","none");
 
 
@@ -241,31 +250,6 @@ function show_page(epp,tpp,toe,turl,evd,fade,fadeTime,iet,ietS,etf,events,page_i
 
 function show(epp,tpp,toe,evd,events,turl,fade,fadeTime,iet,ietS,etf)
 {
-	
-	if(etf == undefined)
-	{
-		etf = "hh:mm:ss";
-	}
-	if(fade == undefined)
-	{
-		fade = false;
-	}
-	if(fadeTime == undefined)
-	{
-		fadeTime = 4;
-	}
-	if(iet == undefined)
-	{
-		iet = false;
-	}
-	if(ietS == undefined)
-	{
-		ietS = " ";
-	}
-	if(turl == undefined)
-	{
-		turl = "http://127.0.0.1:5555/zone=myzone";
-	}
 
 	var events_count=showable_event_index.length;
 
@@ -303,16 +287,8 @@ function float2int (value) {
 function hide_page(page_id,evd)
 {
 	
-	if(evd == "evtCont")
-	{
-		var className=".row-"+page_id;
-		$($(className)).remove();
-	}
-	else
-	{
-		var className=".rowAlt-"+page_id;
-		$($(className)).remove();
-	}
+	var className=".created";
+	$($(className)).remove();
 }
 
 function modify_events(epp,tpp,toe,evd,events,turl,fade,fadeTime,iet,ietS,etf)
@@ -349,44 +325,36 @@ function show_event_divs(epp,evd,events,fade,fadeTime)
 	{
 		var page_num = float2int(index / epp);
 		var div_index = index % epp;
-		if(fade == true)
+		if(fade == false)
 		{
-			if(evd == "evtCont")
+			var class_n=".created";
+			$($(class_n)[div_index]).fadeIn(0);
+
+		}
+		else
+		{	
+			if(evd=="evtCont")
 			{
-				var class_n=".row-"+page_num;
+				var class_n=".created";
 				$($(class_n)[div_index]).delay(1000*fadeTime*(index % epp));
 				$($(class_n)[div_index]).fadeIn(1000*fadeTime);
-
+				$($(class_n)[div_index]).children().children().css("display","block");
 			}
 			else
 			{
-				var class_n=".rowAlt-"+page_num;
-
+				var class_n=".created";
 				$($(class_n)[div_index]).delay(1000*fadeTime*(index % epp));
 				$($(class_n)[div_index]).fadeIn(1000*fadeTime);
 
-			    var children_array=$($(class_n)[div_index]).children().children();
+				var children_array=$($(class_n)[div_index]).children().children();
 				var children_count=children_array.length;
-		
-			    for(var child_index=0; child_index<children_count;child_index++)
+			
+				for(var child_index=0; child_index<children_count;child_index++)
 				{
 					$(children_array[child_index]).delay(800*child_index+1000*fadeTime*(index %epp));
 					$(children_array[child_index]).fadeIn(100);
 				}
 			}
-		}
-		else
-		{
-			if(evd == "evtCont")
-			{
-				var class_n=".row-"+page_num;
-				$($(class_n)).fadeIn(0);
-			}
-			else
-			{
-				var class_n=".rowAlt-"+page_num;
-				$($(class_n)).fadeIn(0);
-			}	
 		}
 	}
 }
