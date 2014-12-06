@@ -5,22 +5,21 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 
     <script src="js/source.js"></script>
-    <script src="js/quickpager.jquery.js"></script>
     <script src="js/jquery-2.1.1.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
     <script type="text/javascript">
 
       var epp = 6;
-      var tpp = 7;
+      var tpp = 3;
       var toe = false;
-      var evd = "evtCont";
+      var evd = "row";
 
 //////////////////They will be null////////////////////
 
       var etf = "hh:mm:ss";
       var fade= true;
-      var fadeTime=4;
+      var fadeTime = 4;
       var iet= true;
       var ietS="-";
       var turl= "http://127.0.0.1:5555/zone=myzone";
@@ -41,8 +40,8 @@
         "eventEnd": "2014-11-24 14:10:00",
         "roomEventStart": "2014-11-24 12:55:00",
         "roomEventEnd": "2014-11-24 14:15:00",
-        "foyerEventStart": "2014-11-24 11:40:00",
-        "foyerEventEnd": "2014-12-04 08:32:00",
+        "foyerEventStart": "2011-12-05 12:29:00",
+        "foyerEventEnd": "2014-12-26 12:24:00",
         "hide": "0",
         "roomNames": "Charlie",
         "roomIds": "74",
@@ -68,7 +67,7 @@
         "roomEventStart": "2014-11-24 12:55:00",
         "roomEventEnd": "2014-11-24 14:15:00",
         "foyerEventStart": "2014-11-24 11:40:00",
-        "foyerEventEnd": "2014-12-04 08:32:00",
+        "foyerEventEnd": "2015-12-24 08:32:00",
         "hide": "0",
         "roomNames": "Charlie",
         "roomIds": "74",
@@ -120,7 +119,7 @@
         "roomEventStart": "2014-11-25 10:10:00",
         "roomEventEnd": "2014-11-25 22:30:00",
         "foyerEventStart": "2014-12-04 04:40:00",
-        "foyerEventEnd": "2014-12-04 08:32:00",
+        "foyerEventEnd": "2016-12-24 08:32:00",
         "hide": "0",
         "roomNames": "Alpha",
         "roomIds": "72",
@@ -171,7 +170,7 @@
         "eventEnd": "2014-11-25 22:10:00",
         "roomEventStart": "2014-11-25 12:55:00",
         "roomEventEnd": "2014-11-25 22:15:00",
-        "foyerEventStart": "2014-12-04 05:12:00",
+        "foyerEventStart": "2014-12-06 07:03:00",
         "foyerEventEnd": "2014-12-25 22:15:00",
         "hide": "0",
         "roomNames": "Bravo,Charlie",
@@ -222,10 +221,17 @@
     </div>
     <!--  This is start of event part !-->
     <script type="text/javascript">
-    
-        sort_events(events);
-
-        show(epp,tpp,toe,evd,events,turl,fade,fadeTime,iet,ietS,etf);
+        
+        
+        if( toe == true)
+        {
+            modify_events(epp,tpp,toe,evd,events,turl,fade,fadeTime,iet,ietS,etf);    
+        }
+        else
+        {
+            modify_events(epp,tpp,toe,evd,events,turl,fade,fadeTime,iet,ietS,etf);       
+        }
+        
         //////////////////////////////////////////////////
     </script>
     <!--  This is end of event part !-->
