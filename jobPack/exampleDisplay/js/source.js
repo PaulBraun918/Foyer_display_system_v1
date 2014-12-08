@@ -67,24 +67,22 @@ function calc_showable_event_count(events)
 	}
 }
 
-function event_time_hour_min_sec(str)
+function return_xdate_one_part(str,etf)
 {
-	var result=str.split(" ");
-	return result[1];
+	var year = parseInt(str.split(" ")[0].split("-")[0]);
+	var month = parseInt(str.split(" ")[0].split("-")[1])-1;
+	var date = parseInt(str.split(" ")[0].split("-")[2]);
+	var hour = parseInt(str.split(" ")[1].split(":")[0]);
+	var minute = parseInt(str.split(" ")[1].split(":")[1]);
+	var second = parseInt(str.split(" ")[1].split(":")[2]);
+
+	var d = new XDate(year,month,date,hour,minute,second);
+
+	return d.toString(etf);
 }
-function return_event_only_start_time(events,etf)
+function return_xdate_two_parts(events,etf,ietS)
 {
-	if(etf=="yyyy:mm:dd hh:mm:ss")
-		return events["eventStart"];
-	else
-		return event_time_hour_min_sec(events["eventStart"]);
-}
-function return_event_start_and_end_time(events,etf,ietS)
-{
-	if(etf=="yyyy:mm:dd hh:mm:ss")
-		return events["eventStart"]+ietS+events["eventEnd"];
-	else
-		return event_time_hour_min_sec(events["eventStart"])+ietS+event_time_hour_min_sec(events["eventEnd"]);
+	return return_xdate_one_part(events["eventStart"],etf)+ietS+return_xdate_one_part(events["eventEnd"],etf);
 }
 
 function show_page(epp,tpp,toe,turl,evd,fade,fadeTime,iet,ietS,etf,events,page_id)
@@ -114,11 +112,12 @@ function show_page(epp,tpp,toe,turl,evd,fade,fadeTime,iet,ietS,etf,events,page_i
 		eventTime.setAttribute("class","eventTime");
 		if(iet==true)
 		{
-			text = document.createTextNode(return_event_start_and_end_time(events[i],etf,ietS));
+			text = document.createTextNode(return_xdate_two_parts(events[i],etf,ietS));
 		}
 		else
 		{
-			text = document.createTextNode(return_event_only_start_time(events[i],etf));
+			var str = events[i]["eventStart"];
+			text = document.createTextNode(return_xdate_one_part(str,etf));
 		}
 		eventTime.appendChild(text); 
 
@@ -329,6 +328,7 @@ function show_event_divs(epp,evd,events,fade,fadeTime)
 		{
 			var class_n=".created";
 			$($(class_n)[div_index]).fadeIn(0);
+			$($(class_n)[div_index]).children().children().css("display","block");
 
 		}
 		else
@@ -336,24 +336,16 @@ function show_event_divs(epp,evd,events,fade,fadeTime)
 			if(evd=="evtCont")
 			{
 				var class_n=".created";
-				$($(class_n)[div_index]).delay(1000*fadeTime*(index % epp));
-				$($(class_n)[div_index]).fadeIn(1000*fadeTime);
-				$($(class_n)[div_index]).children().children().css("display","block");
+				$($(class_n)[div_index]).fadeIn(0);
+				$($(class_n)[div_index]).children().children().delay(800*((index % epp)+1));
+				$($(class_n)[div_index]).children().children().fadeIn(800);
 			}
 			else
 			{
 				var class_n=".created";
 				$($(class_n)[div_index]).delay(1000*fadeTime*(index % epp));
 				$($(class_n)[div_index]).fadeIn(1000*fadeTime);
-
-				var children_array=$($(class_n)[div_index]).children().children();
-				var children_count=children_array.length;
-			
-				for(var child_index=0; child_index<children_count;child_index++)
-				{
-					$(children_array[child_index]).delay(800*child_index+1000*fadeTime*(index %epp));
-					$(children_array[child_index]).fadeIn(100);
-				}
+				$($(class_n)[div_index]).children().children().fadeIn(0);
 			}
 		}
 	}

@@ -1,0 +1,44 @@
+d -  day of month as digits no leading zeros for single digit days eg. 5 for the 5th
+
+dd - day of month as digits, including a leading zero for single digit day eg. 05 for the 5th
+
+ddd - day of week as three letter abbreviation eg. Mon for Monday
+
+dddd - day of week as it's full name, eg. Monday
+
+m - month as digits no leading single digit months eg. 5 for May
+
+mm - month as digits including leading zero for single  digit months eg. 05 for May
+
+mmm- month as three letter abbreviation eg. Dec for December
+
+mmmm - month as it's full name, eg. May
+
+yy - year as last two digits e.g, 14 for 2014
+
+yyyy- year represented by four digits eg. 2014
+
+h - hours no leading zero (12 hour clock) eg. 9 for 9pm 
+
+hh - hours with leading zero (12 hour clock) eg. 09 for 9pm
+
+H - hours no leading zero (24 hour clock) eg. 09 for 9am 
+
+HH - hours with leading zero (24 hour clock) eg. 21 for 9pm
+
+M - minutes no leading zero for single digit numbers e.g. 6 for 5:06
+
+MM - minutes with leading zero for single digit numbers eg. 06 for 5:06
+
+tt- for am/pm 
+
+TT for AM/PM
+
+S - ordinal suffix, eg. st for the 01-01-2014 or nd for the second day of the month
+
+Any other characters should remain unformatted. 
+Eg. 
+
+HH:MM
+
+should result in 09:15 not 0915

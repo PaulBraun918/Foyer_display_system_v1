@@ -6,20 +6,26 @@
 
     <script src="js/source.js"></script>
     <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/xdate.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
     <script type="text/javascript">
 
       var epp = 6;
-      var tpp = 3;
+      var tpp = 8;
       var toe = false;
-      var evd = "row";
+      var evd = "evtCont";
 
 //////////////////They will be null////////////////////
 
-      var etf = "hh:mm:ss";
+      var etf = "hh:mm:ss TT";
+      var fadeTime = 2;
       var fade= true;
-      var fadeTime = 4;
+      
+      if((fade == false)||((fade == true) && (evd=="evtCont")))
+      {
+        fadeTime=0;
+      }
       var iet= true;
       var ietS="-";
       var turl= "http://127.0.0.1:5555/zone=myzone";
